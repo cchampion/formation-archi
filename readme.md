@@ -16,19 +16,19 @@ Clone the project
 
 Go in the directory created
 
-```bash
-cd docker-sf6
+```shell
+cd formation-sf6
 ```
 
 Run the docker compose
 
-```bash
+```shell
 docker compose -p guestbook up -d
 ```
 
 Log into the PHP container
 
-```bash
+```shell
 docker exec -it guestbook bash
 ```
 
