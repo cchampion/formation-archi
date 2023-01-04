@@ -1,0 +1,36 @@
+version: '3.7'
+services:
+  php8-sf6:
+    container_name: "guestbook"
+    image: cchampioniocean/php-sf:php8.1-sf6.2
+    ports:
+      - 8000:8000
+    working_dir: /symfony
+    volumes:
+      - ./symfony:/symfony
+
+  database:
+    container_name: "guestbook-mariadb"
+    image: mariadb:10.10.2
+    restart: always
+    environment:
+      MARIADB_ALLOW_EMPTY_ROOT_PASSWORD: yes
+      MARIADB_DATABASE: guestbook
+      MARIADB_USER: guestbook
+      MARIADB_PASSWORD: guestbook
+    ports:
+      - 3307:3306
+
+  phpmyadmin:
+    container_name: "guestbook-phpmyadmin"
+    image: phpmyadmin/phpmyadmin:5.0.4
+    links:
+      - database
+    restart: always
+    environment:
+      PMA_HOST: database
+      PMA_USER: root
+      PMA_PORT: 3306
+      PMA_ARBITRARY: 1
+    ports:
+      - 8080:80
