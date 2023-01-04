@@ -12,13 +12,7 @@ Installing :
 
 ## Run Locally
 
-Clone the project
-
-Go in the directory created
-
-```shell
-cd formation-sf6
-```
+Clone the project and go to the directory created
 
 Run the docker compose
 
