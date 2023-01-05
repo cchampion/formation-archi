@@ -6,13 +6,10 @@ services:
     ports:
       - 8000:8000
     working_dir: /symfony
-    volumes:
-      - ./symfony:/symfony
 
   database:
     container_name: "guestbook-mariadb"
     image: mariadb:10.10.2
-    restart: always
     environment:
       MARIADB_ALLOW_EMPTY_ROOT_PASSWORD: yes
       MARIADB_DATABASE: guestbook
@@ -26,7 +23,6 @@ services:
     image: phpmyadmin/phpmyadmin:5.0.4
     links:
       - database
-    restart: always
     environment:
       PMA_HOST: database
       PMA_USER: root
