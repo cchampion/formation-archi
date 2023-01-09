@@ -6,6 +6,8 @@ services:
     ports:
       - 8000:8000
     working_dir: /symfony
+    volumes:
+      - ~symfony:/symfony
 
   database:
     container_name: "guestbook-mariadb"
