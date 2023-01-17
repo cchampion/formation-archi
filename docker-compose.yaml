@@ -1,13 +1,11 @@
 version: '3.7'
 services:
-  php8-sf6:
+  php8:
     container_name: "guestbook"
-    image: cchampioniocean/php-sf:php8.1-sf6.2
+    image: cchampioniocean/php:php8.1-sf6.2
     ports:
       - 8000:8000
     working_dir: /symfony
-    volumes:
-      - ~symfony:/symfony
 
   database:
     container_name: "guestbook-mariadb"
