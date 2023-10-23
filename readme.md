@@ -17,13 +17,13 @@ Clone the project and go to the directory created
 Run the docker compose
 
 ```shell
-docker compose -p guestbook up -d
+docker compose -p symfony up -d
 ```
 
 Log into the PHP container
 
 ```shell
-docker exec -it guestbook bash
+docker exec -it symfony bash
 ```
 
 Check the Symfony installation
