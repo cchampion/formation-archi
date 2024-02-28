@@ -2,8 +2,31 @@ version: '3.7'
 services:
   php8:
     container_name: "symfony"
-    image: cchampioniocean/php:php8.1-sf6.2
+    image: cchampioniocean/php:php8.1-node16-sf6.2
     ports:
       - 8000:8000
     working_dir: /symfony
-    
+
+  database:
+    container_name: "symfony-mariadb"
+    image: mariadb:10.10.2
+    environment:
+      MARIADB_ALLOW_EMPTY_ROOT_PASSWORD: yes
+      MARIADB_DATABASE: formation-php
+      MARIADB_USER: formation-php
+      MARIADB_PASSWORD: formation-php
+    ports:
+      - 3306:3306
+
+  phpmyadmin:
+    container_name: "symfony-phpmyadmin"
+    image: phpmyadmin/phpmyadmin:5.0.4
+    links:
+      - database
+    environment:
+      PMA_HOST: database
+      PMA_USER: root
+      PMA_PORT: 3306
+      PMA_ARBITRARY: 1
+    ports:
+      - 82:80
