@@ -16,7 +16,7 @@ services:
       MARIADB_USER: formation-php
       MARIADB_PASSWORD: formation-php
     ports:
-      - 3307:3306
+      - 33007:3306
 
   phpmyadmin:
     container_name: "symfony-phpmyadmin"
