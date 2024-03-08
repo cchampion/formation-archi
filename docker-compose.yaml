@@ -1,29 +1,39 @@
 version: '3.7'
 services:
-  php8:
-    container_name: "symfony"
-    image: cchampioniocean/php:php8.1-node16-sf6.2
+  app:
+    container_name: "${COMPOSE_PROJECT_NAME}-app"
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      TZ: Europe/Paris
     ports:
+      - 8080:80
       - 8000:8000
-    working_dir: /symfony
+    working_dir: /var/www/html
+
+    # Overrides default command so things don't shut down after the process ends.
+    command: sleep infinity
 
   database:
-    container_name: "symfony-mariadb"
+    container_name: "${COMPOSE_PROJECT_NAME}-database"
     image: mariadb:10.10.2
     environment:
+      TZ: Europe/Paris
       MARIADB_ALLOW_EMPTY_ROOT_PASSWORD: yes
-      MARIADB_DATABASE: formation-php
-      MARIADB_USER: formation-php
-      MARIADB_PASSWORD: formation-php
+      MARIADB_DATABASE: ${COMPOSE_PROJECT_NAME}
+      MARIADB_USER: ${COMPOSE_PROJECT_NAME}
+      MARIADB_PASSWORD: ${COMPOSE_PROJECT_NAME}
     ports:
       - 33007:3306
 
   phpmyadmin:
-    container_name: "symfony-phpmyadmin"
+    container_name: "${COMPOSE_PROJECT_NAME}-phpmyadmin"
     image: phpmyadmin/phpmyadmin:5.0.4
     links:
       - database
     environment:
+      TZ: Europe/Paris
       PMA_HOST: database
       PMA_USER: root
       PMA_PORT: 3306

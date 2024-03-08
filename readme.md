@@ -6,7 +6,7 @@ Installing :
 + Composer (last version)
 + Symfony (last version)
 + Some other php extentions
-+ nodejs, npm, yarn
++ nvm => nodejs, npm, yarn
 + MariaDB 10.10.2
 + PHPMyAdmin 5.0.4
 
@@ -17,13 +17,13 @@ Clone the project and go to the directory created
 Run the docker compose
 
 ```shell
-docker compose -p symfony up -d
+docker compose -p {project-name} up -d
 ```
 
 Log into the PHP container
 
 ```shell
-docker exec -it symfony bash
+docker exec -it {project-name} bash
 ```
 
 Check the Symfony installation
